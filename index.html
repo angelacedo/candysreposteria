@@ -173,7 +173,7 @@ header.scrolled{background:rgba(255,248,240,.88);backdrop-filter:blur(14px);
 .blob--2{width:45%;height:45%;background:var(--beige);bottom:-6%;left:-8%;opacity:.55;
   animation:float 11s ease-in-out infinite reverse}
 .hero-tag{
-  position:absolute;bottom:1.2rem;left:-1.2rem;z-index:3;background:var(--blanco);
+  position:absolute;bottom:1rem;left:1rem;z-index:3;background:var(--blanco);
   border-radius:var(--radio-sm);padding:.7rem 1.1rem;box-shadow:var(--sombra-sm);
   display:flex;align-items:center;gap:.6rem;font-weight:600;font-size:.92rem;color:var(--cacao)
 }
@@ -412,20 +412,19 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
 
 /* hero: titular más expresivo + underline dibujado a mano */
 .hero-copy h1{font-weight:600}
-.hero-copy .em{position:relative;white-space:nowrap}
-.hero-copy .em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.34em;z-index:-1;
-  background:linear-gradient(180deg,transparent 55%,rgba(238,200,198,.85) 55%)}
+.hero-copy .em{white-space:nowrap;background:linear-gradient(180deg,transparent 60%,rgba(238,200,198,.9) 60%);
+  padding:0 .08em;border-radius:.08em}
 .hero-copy .lead{margin-top:.4rem}
 
 /* sello circular rotatorio en el hero */
-.seal{position:absolute;top:-34px;right:-18px;z-index:4;width:118px;height:118px;
+.seal{position:absolute;top:14px;right:14px;z-index:4;width:112px;height:112px;
   background:var(--cacao);border-radius:50%;display:grid;place-items:center;box-shadow:var(--sombra);
   animation:spin 22s linear infinite}
 .seal svg{width:100%;height:100%}
 .seal text{fill:var(--vainilla);font-family:var(--sans);font-size:9.2px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase}
-.seal .seal-star{position:absolute;color:var(--oro);font-size:1.9rem;animation:spin 22s linear infinite reverse}
+.seal::after{content:"✦";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--oro);font-size:1.7rem}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:520px){.seal{width:92px;height:92px;top:-26px;right:-6px}}
+@media(max-width:520px){.seal{width:86px;height:86px;top:10px;right:10px}}
 
 /* marquee / ribbon */
 .ribbon{background:var(--frambuesa);color:var(--vainilla);padding:.9rem 0;overflow:hidden;
@@ -449,6 +448,15 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
 /* tiles galería: overlay lupa al pasar */
 .tile::after{content:"";position:absolute;inset:0;background:rgba(74,41,37,.18);opacity:0;transition:.35s}
 .tile:hover::after{opacity:1}
+
+/* ---- correcciones visuales ---- */
+/* tiles son <button>: quitar estilos por defecto del navegador */
+.tile{border:0;background:none;padding:0;margin:0 0 1.1rem;font:inherit;color:inherit;text-align:left;display:block;width:100%;-webkit-appearance:none;appearance:none}
+/* botón CTA del nav sólo visible en el drawer móvil (evita duplicado en desktop) */
+.nav-links .btn{display:none}
+@media(max-width:940px){.nav-links .btn{display:inline-flex}}
+/* anclas: que el header fijo no tape el título de la sección */
+section[id],#top{scroll-margin-top:88px}
 </style>
 </head>
 <body>
@@ -495,7 +503,6 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
       <span class="blob blob--1"></span>
       <span class="blob blob--2"></span>
       <div class="seal" aria-hidden="true">
-        <span class="seal-star" style="position:absolute">✦</span>
         <svg viewBox="0 0 120 120">
           <defs><path id="circ" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
           <text><textPath href="#circ" startOffset="0%">· Hecho a mano · Málaga · Artesanal </textPath></text>
