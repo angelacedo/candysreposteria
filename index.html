@@ -401,6 +401,54 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
   border-radius:0 0 var(--radio-sm) 0;z-index:300}
 .skip:focus{left:0}
 :focus-visible{outline:3px solid var(--frambuesa);outline-offset:2px}
+
+/* ============================ v2 · CAPA EDITORIAL MODERNA ============================ */
+/* grano de papel muy sutil sobre todo */
+.grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* numeración editorial de secciones */
+.sec-head .eyebrow::before{content:attr(data-n);color:var(--beige);margin-right:.1rem;font-weight:700}
+
+/* hero: titular más expresivo + underline dibujado a mano */
+.hero-copy h1{font-weight:600}
+.hero-copy .em{position:relative;white-space:nowrap}
+.hero-copy .em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.34em;z-index:-1;
+  background:linear-gradient(180deg,transparent 55%,rgba(238,200,198,.85) 55%)}
+.hero-copy .lead{margin-top:.4rem}
+
+/* sello circular rotatorio en el hero */
+.seal{position:absolute;top:-34px;right:-18px;z-index:4;width:118px;height:118px;
+  background:var(--cacao);border-radius:50%;display:grid;place-items:center;box-shadow:var(--sombra);
+  animation:spin 22s linear infinite}
+.seal svg{width:100%;height:100%}
+.seal text{fill:var(--vainilla);font-family:var(--sans);font-size:9.2px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase}
+.seal .seal-star{position:absolute;color:var(--oro);font-size:1.9rem;animation:spin 22s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:520px){.seal{width:92px;height:92px;top:-26px;right:-6px}}
+
+/* marquee / ribbon */
+.ribbon{background:var(--frambuesa);color:var(--vainilla);padding:.9rem 0;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
+.ribbon-track{display:flex;gap:0;width:max-content;animation:marquee 32s linear infinite}
+.ribbon:hover .ribbon-track{animation-play-state:paused}
+.ribbon span{font-family:var(--serif);font-style:italic;font-size:1.25rem;padding:0 1.6rem;
+  display:inline-flex;align-items:center;gap:1.6rem;white-space:nowrap}
+.ribbon span::after{content:"✦";font-style:normal;font-size:.85rem;opacity:.7}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* tarjetas servicio: etiqueta índice + realce */
+.card{border:1px solid rgba(223,201,180,.55)}
+.card-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(74,41,37,.28));opacity:0;transition:opacity .45s}
+.card:hover .card-media::after{opacity:1}
+.card-index{position:absolute;top:.9rem;left:.9rem;z-index:2;background:var(--vainilla);color:var(--cacao);
+  font-family:var(--serif);font-weight:700;font-size:.9rem;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;box-shadow:var(--sombra-sm)}
+
+/* tiles galería: overlay lupa al pasar */
+.tile::after{content:"";position:absolute;inset:0;background:rgba(74,41,37,.18);opacity:0;transition:.35s}
+.tile:hover::after{opacity:1}
 </style>
 </head>
 <body>
@@ -446,6 +494,13 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
     <div class="hero-media reveal" data-d="1">
       <span class="blob blob--1"></span>
       <span class="blob blob--2"></span>
+      <div class="seal" aria-hidden="true">
+        <span class="seal-star" style="position:absolute">✦</span>
+        <svg viewBox="0 0 120 120">
+          <defs><path id="circ" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
+          <text><textPath href="#circ" startOffset="0%">· Hecho a mano · Málaga · Artesanal </textPath></text>
+        </svg>
+      </div>
       <div class="hero-photo">
         <img src="img/hero.jpg" alt="Tarta artesanal de autor decorada a mano, Candy's Repostería Málaga" width="800" height="1000" fetchpriority="high" />
       </div>
@@ -480,17 +535,25 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
   </div>
 </section>
 
+<!-- ============================ RIBBON ============================ -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <span>Tartas personalizadas</span><span>Cupcakes</span><span>Macarons</span><span>Chocolates artesanales</span><span>Cake pops</span><span>Mesas dulces</span><span>Hecho en Málaga</span>
+    <span>Tartas personalizadas</span><span>Cupcakes</span><span>Macarons</span><span>Chocolates artesanales</span><span>Cake pops</span><span>Mesas dulces</span><span>Hecho en Málaga</span>
+  </div>
+</div>
+
 <!-- ============================ SERVICIOS ============================ -->
 <section id="servicios" aria-labelledby="serv-title">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Nuestra carta</span>
+      <span class="eyebrow" data-n="01 · ">Nuestra carta</span>
       <h2 id="serv-title">Un dulce para cada ocasión</h2>
       <p class="lead">Cada creación se elabora al momento y se diseña contigo. Elige por dónde empezar.</p>
     </div>
     <div class="serv-grid">
       <article class="card card--tall reveal">
-        <div class="card-media"><img loading="lazy" src="img/serv-tarta.jpg" alt="Tarta personalizada de varios pisos para celebración" width="800" height="700" /></div>
+        <div class="card-media"><span class="card-index">01</span><img loading="lazy" src="img/serv-tarta.jpg" alt="Tarta personalizada de varios pisos para celebración" width="800" height="700" /></div>
         <div class="card-body">
           <h3>Tartas personalizadas</h3>
           <p>Bodas, cumpleaños, bautizos o comuniones. Sabor, relleno y diseño pensados para tu celebración.</p>
@@ -498,7 +561,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
         </div>
       </article>
       <article class="card card--wide reveal" data-d="1">
-        <div class="card-media"><img loading="lazy" src="img/serv-cupcakes.jpg" alt="Cupcakes y cake pops artesanales decorados" width="800" height="600" /></div>
+        <div class="card-media"><span class="card-index">02</span><img loading="lazy" src="img/serv-cupcakes.jpg" alt="Cupcakes y cake pops artesanales decorados" width="800" height="600" /></div>
         <div class="card-body">
           <h3>Cupcakes y cake pops</h3>
           <p>El detalle dulce perfecto para detalles de invitados, meriendas y regalos con mimo.</p>
@@ -506,7 +569,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
         </div>
       </article>
       <article class="card card--wide reveal" data-d="2">
-        <div class="card-media"><img loading="lazy" src="img/serv-macarons.jpg" alt="Macarons y bombones de chocolate artesanales" width="800" height="600" /></div>
+        <div class="card-media"><span class="card-index">03</span><img loading="lazy" src="img/serv-macarons.jpg" alt="Macarons y bombones de chocolate artesanales" width="800" height="600" /></div>
         <div class="card-body">
           <h3>Macarons y chocolates</h3>
           <p>Pequeñas joyas artesanales. Colores, sabores y acabados brillantes hechos a mano.</p>
@@ -514,7 +577,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
         </div>
       </article>
       <article class="card card--wide reveal" data-d="1">
-        <div class="card-media"><img loading="lazy" src="img/serv-mesa.jpg" alt="Mesa dulce montada para evento con postres variados" width="800" height="600" /></div>
+        <div class="card-media"><span class="card-index">04</span><img loading="lazy" src="img/serv-mesa.jpg" alt="Mesa dulce montada para evento con postres variados" width="800" height="600" /></div>
         <div class="card-body">
           <h3>Mesas dulces para eventos</h3>
           <p>Montaje completo y coordinado para tu evento: tarta, mini postres y decoración a juego.</p>
@@ -553,7 +616,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
 <section id="galeria" aria-labelledby="gal-title">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Galería</span>
+      <span class="eyebrow" data-n="02 · ">Galería</span>
       <h2 id="gal-title">Creaciones que entran por los ojos</h2>
       <p class="lead">Una muestra del trabajo. Filtra por lo que buscas o pulsa una imagen para verla en grande.</p>
     </div>
@@ -641,7 +704,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
   <div class="wrap">
     <div class="form-grid">
       <div class="form-aside reveal">
-        <span class="eyebrow">Presupuesto</span>
+        <span class="eyebrow" data-n="03 · ">Presupuesto</span>
         <h2 id="form-title" style="margin:1rem 0 .8rem">Pide tu presupuesto sin compromiso</h2>
         <p class="lead">Cuéntame qué tienes en mente y te respondo con una propuesta personalizada.</p>
         <ul class="badge-list">
@@ -727,7 +790,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
 <section aria-labelledby="faq-title">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
-      <span class="eyebrow">Dudas frecuentes</span>
+      <span class="eyebrow" data-n="04 · ">Dudas frecuentes</span>
       <h2 id="faq-title">Antes de encargar</h2>
     </div>
     <div class="faq-list">
@@ -758,6 +821,7 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
 </section>
 
 </main>
+<div class="grain" aria-hidden="true"></div>
 
 <!-- ============================ FOOTER ============================ -->
 <footer>
