@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Candy's Repostería · Tartas y repostería artesanal en Málaga</title>
+<meta name="description" content="Repostería artesanal en Málaga: tartas personalizadas, cupcakes, macarons, chocolates y mesas dulces hechos a medida para bodas, cumpleaños y celebraciones. Pide tu presupuesto sin compromiso." />
+<meta name="theme-color" content="#B94762" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%81%3C/text%3E%3C/svg%3E" />
+
+<!-- ============================================================
+     DATOS EDITABLES — cambia aquí teléfono, redes, horario, etc.
+     WhatsApp: usa formato internacional sin +, espacios ni signos
+     ============================================================ -->
+<script>
+  window.CANDY = {
+    whatsapp: "34600000000",              // <-- CAMBIAR: número real
+    whatsappMsg: "¡Hola Candy's! Me gustaría pedir presupuesto para una creación personalizada.",
+    telefono: "+34 600 000 000",          // <-- CAMBIAR
+    email: "hola@candysreposteria.es",    // <-- CAMBIAR
+    instagram: "https://instagram.com/candysreposteria",
+    facebook: "https://facebook.com/candysreposteria",
+    ciudad: "Málaga, España",
+    horario: "Martes a sábado · 10:00 – 20:00"
+  };
+</script>
+
+<!-- Schema.org LocalBusiness + FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Candy's Repostería",
+  "description": "Repostería artesanal especializada en tartas personalizadas, cupcakes, macarons, chocolates y mesas dulces en Málaga.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Málaga", "addressCountry": "ES" },
+  "areaServed": "Málaga",
+  "servesCuisine": "Repostería artesanal",
+  "priceRange": "€€"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Con cuánta antelación debo hacer el encargo?", "acceptedAnswer": { "@type": "Answer", "text": "Recomiendo reservar con 2 a 3 semanas de antelación para tartas personalizadas y mesas dulces. En fechas señaladas conviene avisar antes. Para urgencias, escríbeme y vemos disponibilidad." } },
+    { "@type": "Question", "name": "¿Cómo recojo mi pedido?", "acceptedAnswer": { "@type": "Answer", "text": "La recogida se realiza en Málaga en el punto y horario que acordemos al confirmar el encargo." } },
+    { "@type": "Question", "name": "¿Puedo personalizar sabores, colores y diseño?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Cada creación se diseña contigo: sabor, relleno, colores, temática y detalles. Cuéntame tu idea y la hacemos realidad." } },
+    { "@type": "Question", "name": "¿Contemplas alérgenos e intolerancias?", "acceptedAnswer": { "@type": "Answer", "text": "Trabajo con ingredientes seleccionados y puedo adaptar algunas recetas. Indícame cualquier alergia o intolerancia al pedir presupuesto y te confirmo las opciones disponibles." } },
+    { "@type": "Question", "name": "¿Cómo pido presupuesto?", "acceptedAnswer": { "@type": "Answer", "text": "Por WhatsApp o rellenando el formulario de la web. Respondo de forma personalizada y sin compromiso." } }
+  ]
+}
+</script>
+
+<style>
+/* ============================ TOKENS ============================ */
+:root{
+  --vainilla:#FFF8F0;
+  --rosa:#EEC8C6;
+  --frambuesa:#B94762;
+  --cacao:#4A2925;
+  --beige:#DFC9B4;
+  --oro:#C9A24B;
+  --tinta:#3B2420;
+  --tinta-suave:#6b544e;
+  --blanco:#fffdfb;
+  --radio:28px;
+  --radio-sm:16px;
+  --sombra:0 18px 50px -20px rgba(74,41,37,.35);
+  --sombra-sm:0 8px 24px -12px rgba(74,41,37,.3);
+  --max:1200px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);color:var(--tinta);background:var(--vainilla);
+  line-height:1.6;font-size:17px;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(238,200,198,.28), transparent 42%),
+    radial-gradient(circle at 88% 30%, rgba(223,201,180,.25), transparent 40%);
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;color:var(--cacao);letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,6vw,4.3rem)}
+h2{font-size:clamp(1.9rem,4.2vw,3rem)}
+h3{font-size:clamp(1.2rem,2.4vw,1.5rem)}
+p{color:var(--tinta-suave)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.2rem,4vw,2.5rem)}
+section{padding:clamp(3.5rem,8vw,7rem) 0;position:relative}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);
+  font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--frambuesa);background:var(--blanco);border:1px solid var(--rosa);
+  padding:.45rem 1rem;border-radius:999px;box-shadow:var(--sombra-sm)
+}
+.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);max-width:56ch}
+
+/* ============================ BOTONES ============================ */
+.btn{
+  --bg:var(--frambuesa);--fg:#fff;
+  display:inline-flex;align-items:center;gap:.6rem;font-family:var(--sans);
+  font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:999px;
+  background:var(--bg);color:var(--fg);border:1.5px solid var(--bg);cursor:pointer;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s;
+  box-shadow:0 10px 26px -12px rgba(185,71,98,.7);white-space:nowrap
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 34px -14px rgba(185,71,98,.8)}
+.btn:focus-visible{outline:3px solid var(--cacao);outline-offset:3px}
+.btn--ghost{--bg:transparent;--fg:var(--cacao);border-color:var(--cacao);box-shadow:none}
+.btn--ghost:hover{background:var(--cacao);color:var(--vainilla)}
+.btn--cream{--bg:var(--vainilla);--fg:var(--cacao);border-color:var(--vainilla)}
+.btn--wa{--bg:#25D366;--fg:#0a3d1f;border-color:#25D366;box-shadow:0 10px 26px -12px rgba(37,211,102,.7)}
+.btn svg{width:1.15em;height:1.15em}
+
+/* ============================ HEADER ============================ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .35s,box-shadow .35s,padding .35s;padding:1.1rem 0
+}
+header.scrolled{background:rgba(255,248,240,.88);backdrop-filter:blur(14px);
+  box-shadow:0 6px 24px -18px rgba(74,41,37,.6);padding:.6rem 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--cacao);letter-spacing:-.02em}
+.logo span{color:var(--frambuesa)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.98rem;font-weight:500;color:var(--tinta);position:relative;padding:.2rem 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;
+  background:var(--frambuesa);transition:width .3s var(--ease)}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:.8rem}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:.4rem;color:var(--cacao)}
+.burger svg{width:28px;height:28px}
+
+/* móvil */
+@media(max-width:940px){
+  .nav-links{
+    position:fixed;inset:0 0 0 auto;width:min(82vw,340px);flex-direction:column;
+    align-items:flex-start;justify-content:center;gap:1.6rem;padding:2rem 2.2rem;
+    background:var(--vainilla);box-shadow:var(--sombra);
+    transform:translateX(100%);transition:transform .4s var(--ease);z-index:120
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1.25rem;font-family:var(--serif)}
+  .nav-links .btn{margin-top:.5rem}
+  .burger{display:inline-flex}
+  .nav-cta .btn:not(.burger){display:none}
+  .nav-overlay{position:fixed;inset:0;background:rgba(74,41,37,.4);opacity:0;visibility:hidden;
+    transition:.35s;z-index:110}
+  .nav-overlay.open{opacity:1;visibility:visible}
+}
+
+/* ============================ HERO ============================ */
+.hero{padding-top:clamp(7rem,14vw,9rem);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero-copy h1{margin:1.2rem 0 1.1rem}
+.hero-copy .em{color:var(--frambuesa);font-style:italic}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.hero-media{position:relative}
+.hero-photo{
+  aspect-ratio:4/5;border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra);
+  position:relative;z-index:2
+}
+.blob{position:absolute;border-radius:46% 54% 60% 40%/55% 48% 52% 45%;filter:blur(2px);z-index:1}
+.blob--1{width:60%;height:60%;background:var(--rosa);top:-8%;right:-10%;opacity:.6;
+  animation:float 9s ease-in-out infinite}
+.blob--2{width:45%;height:45%;background:var(--beige);bottom:-6%;left:-8%;opacity:.55;
+  animation:float 11s ease-in-out infinite reverse}
+.hero-tag{
+  position:absolute;bottom:1.2rem;left:-1.2rem;z-index:3;background:var(--blanco);
+  border-radius:var(--radio-sm);padding:.7rem 1.1rem;box-shadow:var(--sombra-sm);
+  display:flex;align-items:center;gap:.6rem;font-weight:600;font-size:.92rem;color:var(--cacao)
+}
+.hero-tag .dot{width:9px;height:9px;border-radius:50%;background:var(--frambuesa)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* ============================ PLACEHOLDER IMG ============================ */
+/* Sustituye cada .ph por <img loading="lazy"> con foto real de Candy's */
+.ph{
+  width:100%;height:100%;display:grid;place-items:center;text-align:center;
+  background:linear-gradient(135deg,var(--rosa),var(--beige));color:var(--cacao);
+  font-family:var(--serif);font-size:1rem;padding:1rem;position:relative
+}
+.ph::before{content:"📷";font-size:2rem;position:absolute;top:14%;opacity:.55}
+.ph span{opacity:.85;font-size:.85rem;font-family:var(--sans);max-width:22ch}
+/* imágenes reales cubren su contenedor */
+.hero-photo img,.custom-media img,.story-media img{width:100%;height:100%;object-fit:cover}
+.tile img{width:100%;aspect-ratio:var(--r,3/4);object-fit:cover}
+
+/* ============================ CONFIANZA ============================ */
+.trust{background:var(--blanco);border-radius:var(--radio);box-shadow:var(--sombra-sm);
+  margin-top:-1rem}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;padding:2.2rem clamp(1.5rem,4vw,3rem)}
+.trust-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.7rem}
+.trust-item svg{width:34px;height:34px;color:var(--frambuesa)}
+.trust-item strong{font-size:1rem;color:var(--cacao)}
+@media(max-width:720px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ============================ SERVICIOS ============================ */
+.sec-head{max-width:60ch;margin-bottom:clamp(2rem,4vw,3rem)}
+.sec-head h2{margin:1rem 0 .8rem}
+.serv-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.5rem}
+.card{
+  position:relative;border-radius:var(--radio);overflow:hidden;background:var(--blanco);
+  box-shadow:var(--sombra-sm);transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+  min-height:320px;display:flex;flex-direction:column
+}
+.card:hover{transform:translateY(-8px);box-shadow:var(--sombra)}
+.card-media{aspect-ratio:16/12;overflow:hidden;position:relative}
+.card-media .ph,.card-media img{transition:transform .6s var(--ease);height:100%;object-fit:cover}
+.card:hover .card-media .ph,.card:hover .card-media img{transform:scale(1.06)}
+.card-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.card-body h3{color:var(--cacao)}
+.card-body p{font-size:.95rem;flex:1}
+.card-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--frambuesa);
+  font-weight:600;font-size:.95rem;margin-top:.4rem}
+.card-link svg{width:1em;height:1em;transition:transform .3s var(--ease)}
+.card:hover .card-link svg{transform:translateX(5px)}
+/* composición editorial irregular */
+.card--tall{grid-column:span 3;grid-row:span 2}
+.card--wide{grid-column:span 3}
+.card--tall .card-media{aspect-ratio:16/14}
+@media(max-width:900px){
+  .serv-grid{grid-template-columns:1fr}
+  .card--tall,.card--wide{grid-column:auto;grid-row:auto}
+}
+
+/* ============================ PERSONALIZACIÓN ============================ */
+.custom{background:linear-gradient(160deg,var(--rosa),var(--vainilla));border-radius:var(--radio);
+  overflow:hidden;box-shadow:var(--sombra-sm)}
+.custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.custom-media{aspect-ratio:4/5;border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra)}
+.steps{list-style:none;display:flex;flex-direction:column;gap:1.3rem;margin:2rem 0}
+.step{display:flex;gap:1.1rem;align-items:flex-start}
+.step-num{flex:none;width:44px;height:44px;border-radius:50%;background:var(--frambuesa);color:#fff;
+  display:grid;place-items:center;font-family:var(--serif);font-size:1.2rem;font-weight:700;
+  box-shadow:0 8px 18px -8px rgba(185,71,98,.8)}
+.step h3{font-size:1.15rem;margin-bottom:.15rem}
+.step p{font-size:.95rem}
+@media(max-width:820px){.custom-grid{grid-template-columns:1fr}.custom-media{order:-1}}
+
+/* ============================ GALERÍA ============================ */
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.filter{font-family:var(--sans);font-weight:600;font-size:.92rem;padding:.5rem 1.1rem;
+  border-radius:999px;border:1.5px solid var(--beige);background:transparent;color:var(--tinta);
+  cursor:pointer;transition:.25s}
+.filter:hover{border-color:var(--frambuesa);color:var(--frambuesa)}
+.filter[aria-pressed="true"]{background:var(--frambuesa);border-color:var(--frambuesa);color:#fff}
+.masonry{columns:3;column-gap:1.1rem}
+@media(max-width:820px){.masonry{columns:2}}
+@media(max-width:480px){.masonry{columns:1}}
+.tile{break-inside:avoid;margin-bottom:1.1rem;border-radius:var(--radio-sm);overflow:hidden;
+  box-shadow:var(--sombra-sm);cursor:zoom-in;position:relative;transition:transform .4s var(--ease)}
+.tile:hover{transform:scale(1.015)}
+.tile:focus-visible{outline:3px solid var(--frambuesa);outline-offset:3px}
+.tile .ph{aspect-ratio:var(--r,3/4)}
+.tile.hide{display:none}
+.gallery-cta{grid-column:1/-1;background:var(--cacao);color:var(--vainilla);border-radius:var(--radio-sm);
+  padding:2rem;text-align:center;break-inside:avoid;margin-bottom:1.1rem;display:flex;
+  flex-direction:column;gap:1rem;align-items:center}
+.gallery-cta h3{color:var(--vainilla)}
+.gallery-cta p{color:rgba(255,248,240,.8)}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(59,36,32,.9);backdrop-filter:blur(6px);
+  display:none;place-items:center;padding:2rem}
+.lightbox.open{display:grid}
+.lightbox-inner{max-width:min(90vw,640px);width:100%;aspect-ratio:3/4;border-radius:var(--radio);
+  overflow:hidden;box-shadow:var(--sombra);animation:pop .4s var(--ease)}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.lb-close{position:absolute;top:1.4rem;right:1.6rem;background:var(--vainilla);border:none;
+  width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:var(--cacao)}
+.lb-close svg{width:24px;height:24px}
+
+/* ============================ HISTORIA ============================ */
+.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.story-media{aspect-ratio:1/1;border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra)}
+.story-copy h2{margin:1rem 0 1.2rem}
+.story-copy p+p{margin-top:1rem}
+@media(max-width:820px){.story-grid{grid-template-columns:1fr}}
+
+/* ============================ TESTIMONIOS ============================ */
+.demo-note{font-size:.8rem;color:var(--tinta-suave);font-style:italic;margin-top:.4rem}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.review{background:var(--blanco);border-radius:var(--radio);padding:1.8rem;box-shadow:var(--sombra-sm);
+  display:flex;flex-direction:column;gap:1rem;border:1px solid rgba(223,201,180,.5)}
+.stars{display:flex;gap:.2rem;color:var(--oro)}
+.stars svg{width:18px;height:18px;fill:currentColor}
+.review blockquote{font-family:var(--serif);font-size:1.1rem;color:var(--cacao);line-height:1.4}
+.review .who{display:flex;align-items:center;gap:.8rem;margin-top:auto}
+.review .avatar{width:44px;height:44px;border-radius:50%;background:var(--rosa);display:grid;
+  place-items:center;font-family:var(--serif);font-weight:700;color:var(--frambuesa)}
+.review .who b{color:var(--cacao);display:block;font-size:.95rem}
+.review .who span{font-size:.82rem;color:var(--tinta-suave)}
+.demo-badge{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--frambuesa);background:var(--rosa);padding:.2rem .55rem;border-radius:999px;align-self:flex-start}
+@media(max-width:820px){.rev-grid{grid-template-columns:1fr}}
+
+/* ============================ FORMULARIO ============================ */
+.form-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2rem,5vw,3.5rem);align-items:start}
+.form-aside .badge-list{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:1.8rem}
+.form-aside .badge-list li{display:flex;gap:.8rem;align-items:center;font-weight:600;color:var(--cacao)}
+.form-aside .badge-list svg{width:26px;height:26px;color:var(--frambuesa);flex:none}
+.form-wa{margin-top:2rem;padding:1.4rem;background:var(--rosa);border-radius:var(--radio-sm);
+  display:flex;flex-direction:column;gap:.8rem}
+.form-wa p{color:var(--cacao)}
+form.quote{background:var(--blanco);border-radius:var(--radio);padding:clamp(1.5rem,3vw,2.4rem);
+  box-shadow:var(--sombra-sm);display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.field{display:flex;flex-direction:column;gap:.4rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.88rem;font-weight:600;color:var(--cacao)}
+.field label .req{color:var(--frambuesa)}
+.field input,.field select,.field textarea{
+  font-family:var(--sans);font-size:1rem;padding:.8rem 1rem;border-radius:var(--radio-sm);
+  border:1.5px solid var(--beige);background:var(--vainilla);color:var(--tinta);transition:.25s;width:100%
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--frambuesa);box-shadow:0 0 0 3px rgba(185,71,98,.15)}
+.field textarea{resize:vertical;min-height:110px}
+.field .err{font-size:.8rem;color:#c0392b;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#c0392b}
+.field.invalid .err{display:block}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+.form-foot small{font-size:.78rem;color:var(--tinta-suave);max-width:40ch}
+.form-ok{grid-column:1/-1;background:#e8f6ec;border:1.5px solid #79c893;color:#1c6b3a;
+  border-radius:var(--radio-sm);padding:1rem 1.2rem;display:none;font-weight:600}
+.form-ok.show{display:block}
+@media(max-width:900px){.form-grid{grid-template-columns:1fr}form.quote{grid-template-columns:1fr}}
+
+/* ============================ FAQ ============================ */
+.faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:.9rem}
+.faq{background:var(--blanco);border-radius:var(--radio-sm);box-shadow:var(--sombra-sm);
+  border:1px solid rgba(223,201,180,.5);overflow:hidden}
+.faq summary{cursor:pointer;padding:1.15rem 1.4rem;font-weight:600;color:var(--cacao);
+  font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;color:var(--frambuesa);transition:transform .3s;flex:none}
+.faq[open] summary::after{transform:rotate(45deg)}
+.faq .faq-body{padding:0 1.4rem 1.3rem;color:var(--tinta-suave)}
+
+/* ============================ CTA FINAL ============================ */
+.cta-final{background:var(--cacao);color:var(--vainilla);border-radius:var(--radio);
+  text-align:center;padding:clamp(3rem,7vw,5rem) clamp(1.5rem,5vw,3rem);position:relative;overflow:hidden}
+.cta-final::before,.cta-final::after{content:"";position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(238,200,198,.25),transparent 70%)}
+.cta-final::before{width:340px;height:340px;top:-120px;left:-80px}
+.cta-final::after{width:300px;height:300px;bottom:-120px;right:-60px}
+.cta-final h2{color:var(--vainilla);position:relative;margin-bottom:1rem}
+.cta-final p{color:rgba(255,248,240,.82);max-width:52ch;margin:0 auto 2rem;position:relative}
+.cta-final .hero-cta{justify-content:center;position:relative}
+
+/* ============================ FOOTER ============================ */
+footer{background:var(--cacao);color:rgba(255,248,240,.75);padding:clamp(3rem,6vw,4.5rem) 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem}
+footer .logo{color:var(--vainilla)}
+footer h4{font-family:var(--serif);color:var(--vainilla);font-size:1.1rem;margin-bottom:1rem;font-weight:600}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+footer a{color:rgba(255,248,240,.75);transition:color .25s;font-size:.95rem}
+footer a:hover{color:var(--rosa)}
+footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
+.socials{display:flex;gap:.8rem;margin-top:1rem}
+.socials a{width:42px;height:42px;border-radius:50%;background:rgba(255,248,240,.1);
+  display:grid;place-items:center;transition:.25s}
+.socials a:hover{background:var(--frambuesa);color:#fff}
+.socials svg{width:20px;height:20px}
+.foot-bottom{border-top:1px solid rgba(255,248,240,.15);margin-top:2.5rem;padding-top:1.5rem;
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.85rem}
+.foot-bottom a{margin-right:1.2rem}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+
+/* ============================ WHATSAPP FLOTANTE ============================ */
+.wa-float{position:fixed;bottom:1.4rem;right:1.4rem;z-index:90;width:60px;height:60px;
+  border-radius:50%;background:#25D366;display:grid;place-items:center;color:#fff;
+  box-shadow:0 12px 30px -10px rgba(37,211,102,.8);transition:transform .3s var(--ease)}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:32px;height:32px}
+.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;
+  animation:pulse 2.2s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+
+/* ============================ REVEAL ANIM ============================ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+
+/* accesibilidad: reducir movimiento */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+.skip{position:absolute;left:-999px;top:0;background:var(--frambuesa);color:#fff;padding:.7rem 1.2rem;
+  border-radius:0 0 var(--radio-sm) 0;z-index:300}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--frambuesa);outline-offset:2px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- ============================ HEADER ============================ -->
+<header id="top">
+  <div class="wrap nav">
+    <a href="#top" class="logo">Candy's <span>Repostería</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#top">Inicio</a></li>
+      <li><a href="#servicios">Tartas</a></li>
+      <li><a href="#servicios">Dulces</a></li>
+      <li><a href="#servicios">Mesas dulces</a></li>
+      <li><a href="#historia">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a class="btn" href="#contacto">Encarga tu tarta</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn" href="#contacto">Encarga tu tarta</a>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">🍒 Repostería artesanal en Málaga</span>
+      <h1 id="hero-title">Momentos dulces que se recuerdan <span class="em">para siempre</span></h1>
+      <p class="lead">Tartas y repostería artesanal hechas a medida en Málaga para celebrar cada historia como merece.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#contacto">Quiero mi presupuesto</a>
+        <a class="btn btn--ghost" href="#galeria">Ver creaciones</a>
+      </div>
+    </div>
+    <div class="hero-media reveal" data-d="1">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <div class="hero-photo">
+        <img src="img/hero.jpg" alt="Tarta artesanal de autor decorada a mano, Candy's Repostería Málaga" width="800" height="1000" fetchpriority="high" />
+      </div>
+      <div class="hero-tag"><span class="dot"></span> Hecho a mano en Málaga</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONFIANZA ============================ -->
+<section aria-label="Por qué elegirnos" style="padding-top:0">
+  <div class="wrap">
+    <div class="trust reveal">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9H22l-6 4.4 2.3 7-6.3-4.6L5.7 20l2.3-7-6-4.4h7.6z"/></svg>
+          <strong>Hecho artesanalmente</strong>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 100-16 8 8 0 000 16z"/><path d="M12 8v4l3 2"/></svg>
+          <strong>Diseños personalizados</strong>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          <strong>Ingredientes seleccionados</strong>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.7-7-11a7 7 0 0114 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <strong>Recogida en Málaga</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SERVICIOS ============================ -->
+<section id="servicios" aria-labelledby="serv-title">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nuestra carta</span>
+      <h2 id="serv-title">Un dulce para cada ocasión</h2>
+      <p class="lead">Cada creación se elabora al momento y se diseña contigo. Elige por dónde empezar.</p>
+    </div>
+    <div class="serv-grid">
+      <article class="card card--tall reveal">
+        <div class="card-media"><img loading="lazy" src="img/serv-tarta.jpg" alt="Tarta personalizada de varios pisos para celebración" width="800" height="700" /></div>
+        <div class="card-body">
+          <h3>Tartas personalizadas</h3>
+          <p>Bodas, cumpleaños, bautizos o comuniones. Sabor, relleno y diseño pensados para tu celebración.</p>
+          <a class="card-link" href="#contacto">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="card card--wide reveal" data-d="1">
+        <div class="card-media"><img loading="lazy" src="img/serv-cupcakes.jpg" alt="Cupcakes y cake pops artesanales decorados" width="800" height="600" /></div>
+        <div class="card-body">
+          <h3>Cupcakes y cake pops</h3>
+          <p>El detalle dulce perfecto para detalles de invitados, meriendas y regalos con mimo.</p>
+          <a class="card-link" href="#contacto">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="card card--wide reveal" data-d="2">
+        <div class="card-media"><img loading="lazy" src="img/serv-macarons.jpg" alt="Macarons y bombones de chocolate artesanales" width="800" height="600" /></div>
+        <div class="card-body">
+          <h3>Macarons y chocolates</h3>
+          <p>Pequeñas joyas artesanales. Colores, sabores y acabados brillantes hechos a mano.</p>
+          <a class="card-link" href="#contacto">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="card card--wide reveal" data-d="1">
+        <div class="card-media"><img loading="lazy" src="img/serv-mesa.jpg" alt="Mesa dulce montada para evento con postres variados" width="800" height="600" /></div>
+        <div class="card-body">
+          <h3>Mesas dulces para eventos</h3>
+          <p>Montaje completo y coordinado para tu evento: tarta, mini postres y decoración a juego.</p>
+          <a class="card-link" href="#contacto">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PERSONALIZACIÓN ============================ -->
+<section aria-labelledby="custom-title">
+  <div class="wrap">
+    <div class="custom reveal">
+      <div class="custom-grid" style="padding:clamp(1.8rem,4vw,3.2rem)">
+        <div>
+          <span class="eyebrow">Diseño a medida</span>
+          <h2 id="custom-title" style="margin:1rem 0 .6rem">Tu idea, convertida en una tarta única</h2>
+          <p class="lead">Un proceso sencillo y cercano, de la primera idea al último detalle.</p>
+          <ol class="steps">
+            <li class="step"><span class="step-num">1</span><div><h3>Cuéntame tu celebración</h3><p>Fecha, número de invitados, temática y qué te apetece.</p></div></li>
+            <li class="step"><span class="step-num">2</span><div><h3>Diseñamos cada detalle</h3><p>Sabores, colores y decoración hasta que sea justo lo que imaginas.</p></div></li>
+            <li class="step"><span class="step-num">3</span><div><h3>Disfruta de una creación hecha para ti</h3><p>Recoges tu dulce en Málaga, listo para brillar en tu evento.</p></div></li>
+          </ol>
+          <a class="btn" href="#contacto">Solicitar diseño personalizado</a>
+        </div>
+        <div class="custom-media">
+          <img loading="lazy" src="img/custom.jpg" alt="Tarta de varios niveles decorada con flores naturales" width="800" height="1000" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GALERÍA ============================ -->
+<section id="galeria" aria-labelledby="gal-title">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Galería</span>
+      <h2 id="gal-title">Creaciones que entran por los ojos</h2>
+      <p class="lead">Una muestra del trabajo. Filtra por lo que buscas o pulsa una imagen para verla en grande.</p>
+    </div>
+    <div class="filters reveal" role="group" aria-label="Filtrar galería">
+      <button class="filter" data-f="all" aria-pressed="true">Todo</button>
+      <button class="filter" data-f="tartas" aria-pressed="false">Tartas</button>
+      <button class="filter" data-f="eventos" aria-pressed="false">Eventos</button>
+      <button class="filter" data-f="cupcakes" aria-pressed="false">Cupcakes</button>
+      <button class="filter" data-f="mesas" aria-pressed="false">Mesas dulces</button>
+    </div>
+    <div class="masonry" id="masonry">
+      <button class="tile reveal" data-cat="tartas" style="--r:7/9"><img loading="lazy" src="img/gal-tarta-1.jpg" alt="Tarta artesanal decorada" width="700" height="900" /></button>
+      <button class="tile reveal" data-cat="cupcakes" style="--r:1/1"><img loading="lazy" src="img/gal-cupcakes-1.jpg" alt="Cupcakes artesanales decorados" width="700" height="700" /></button>
+      <button class="tile reveal" data-cat="eventos" style="--r:7/8.5"><img loading="lazy" src="img/gal-evento-1.jpg" alt="Tarta para evento de celebración" width="700" height="850" /></button>
+      <div class="gallery-cta reveal">
+        <h3>¿Tienes una idea en mente?</h3>
+        <p>Hablemos y le damos forma juntas.</p>
+        <a class="btn btn--wa" href="#" data-wa>Hablar por WhatsApp</a>
+      </div>
+      <button class="tile reveal" data-cat="mesas" style="--r:7/9"><img loading="lazy" src="img/gal-mesa-1.jpg" alt="Mesa dulce montada para evento" width="700" height="900" /></button>
+      <button class="tile reveal" data-cat="tartas" style="--r:1/1"><img loading="lazy" src="img/gal-tarta-2.jpg" alt="Tarta de chocolate artesanal" width="700" height="700" /></button>
+      <button class="tile reveal" data-cat="cupcakes" style="--r:7/8.5"><img loading="lazy" src="img/gal-cupcakes-2.jpg" alt="Cupcakes rosados decorados a mano" width="700" height="850" /></button>
+      <button class="tile reveal" data-cat="tartas" style="--r:7/9"><img loading="lazy" src="img/gal-tarta-3.jpg" alt="Tarta con fruta fresca" width="700" height="900" /></button>
+      <button class="tile reveal" data-cat="eventos" style="--r:1/1"><img loading="lazy" src="img/gal-evento-2.jpg" alt="Tarta de celebración para evento" width="700" height="700" /></button>
+      <button class="tile reveal" data-cat="mesas" style="--r:7/8.5"><img loading="lazy" src="img/gal-mesa-2.jpg" alt="Macarons y dulces variados en mesa dulce" width="700" height="850" /></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HISTORIA ============================ -->
+<section id="historia" aria-labelledby="story-title">
+  <div class="wrap story-grid">
+    <div class="story-media reveal">
+      <img loading="lazy" src="img/story.jpg" alt="Detalle del obrador artesanal de Candy's Repostería" width="800" height="800" />
+    </div>
+    <div class="story-copy reveal" data-d="1">
+      <span class="eyebrow">Sobre mí</span>
+      <h2 id="story-title">Repostería con alma, detalle y mucha ilusión</h2>
+      <p>Detrás de Candy's hay una pasión por convertir ingredientes sencillos en piezas únicas. Cada tarta se elabora a mano, con calma y cuidado, porque un dulce especial empieza mucho antes del primer bocado.</p>
+      <p>Me encanta escuchar tu historia y traducirla en sabores, colores y detalles que hagan sonreír. Trabajo con cercanía y sin prisas, para que el resultado sea tan especial como el momento que celebras.</p>
+      <a class="btn btn--ghost" href="#contacto" style="margin-top:1.5rem">Conoce la historia de Candy's</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TESTIMONIOS ============================ -->
+<section aria-labelledby="rev-title">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Lo que dicen</span>
+      <h2 id="rev-title">Celebraciones con final feliz</h2>
+      <p class="demo-note">Contenido de demostración — sustituye por reseñas reales o conecta tus valoraciones verificadas de Google.</p>
+    </div>
+    <div class="rev-grid">
+      <article class="review reveal">
+        <span class="demo-badge">Ejemplo</span>
+        <div class="stars" aria-label="5 de 5 estrellas">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg>
+        </div>
+        <blockquote>"La tarta fue el centro de la celebración. Bonita por fuera y aún mejor por dentro."</blockquote>
+        <div class="who"><span class="avatar">L</span><div><b>Lucía (demo)</b><span>Boda · contenido de ejemplo</span></div></div>
+      </article>
+      <article class="review reveal" data-d="1">
+        <span class="demo-badge">Ejemplo</span>
+        <div class="stars" aria-label="5 de 5 estrellas">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg>
+        </div>
+        <blockquote>"Se encargó de la mesa dulce de la comunión y todo el mundo preguntó por ella."</blockquote>
+        <div class="who"><span class="avatar">M</span><div><b>Marta (demo)</b><span>Comunión · contenido de ejemplo</span></div></div>
+      </article>
+      <article class="review reveal" data-d="2">
+        <span class="demo-badge">Ejemplo</span>
+        <div class="stars" aria-label="5 de 5 estrellas">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.6-5.2 4.6 1.6 6.7L12 17.3 5.7 20.8l1.6-6.7L2.1 8.9 9 8.3z"/></svg>
+        </div>
+        <blockquote>"Encargué cupcakes para el cumple de mi hija y repetiremos seguro. Detallista y cercana."</blockquote>
+        <div class="who"><span class="avatar">P</span><div><b>Paula (demo)</b><span>Cumpleaños · contenido de ejemplo</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACTO / FORM ============================ -->
+<section id="contacto" aria-labelledby="form-title">
+  <div class="wrap">
+    <div class="form-grid">
+      <div class="form-aside reveal">
+        <span class="eyebrow">Presupuesto</span>
+        <h2 id="form-title" style="margin:1rem 0 .8rem">Pide tu presupuesto sin compromiso</h2>
+        <p class="lead">Cuéntame qué tienes en mente y te respondo con una propuesta personalizada.</p>
+        <ul class="badge-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Respuesta personalizada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Presupuesto sin compromiso</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9H22l-6 4.4 2.3 7-6.3-4.6L5.7 20l2.3-7-6-4.4h7.6z"/></svg> Diseños a medida</li>
+        </ul>
+        <div class="form-wa">
+          <p><strong>¿Prefieres escribir directamente?</strong></p>
+          <a class="btn btn--wa" href="#" data-wa>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.4.7-1.3.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.9 5-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20z"/></svg>
+            Hablar por WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <form class="quote reveal" data-d="1" novalidate>
+        <div class="form-ok" id="formOk" role="status">¡Gracias! Se abrirá WhatsApp con tu solicitud. Si no, escríbeme directamente.</div>
+        <div class="field">
+          <label for="f-nombre">Nombre <span class="req">*</span></label>
+          <input id="f-nombre" name="nombre" type="text" required autocomplete="name" />
+          <span class="err">Escribe tu nombre.</span>
+        </div>
+        <div class="field">
+          <label for="f-tel">Teléfono <span class="req">*</span></label>
+          <input id="f-tel" name="telefono" type="tel" required autocomplete="tel" inputmode="tel" pattern="[0-9+\s]{6,}" />
+          <span class="err">Introduce un teléfono válido.</span>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" />
+          <span class="err">Revisa el formato del email.</span>
+        </div>
+        <div class="field">
+          <label for="f-fecha">Fecha del evento</label>
+          <input id="f-fecha" name="fecha" type="date" />
+          <span class="err"></span>
+        </div>
+        <div class="field">
+          <label for="f-tipo">Tipo de celebración</label>
+          <select id="f-tipo" name="tipo">
+            <option value="">Elige una opción</option>
+            <option>Boda</option><option>Cumpleaños</option><option>Bautizo</option>
+            <option>Comunión</option><option>Evento corporativo</option>
+            <option>Regalo especial</option><option>Otra</option>
+          </select>
+          <span class="err"></span>
+        </div>
+        <div class="field">
+          <label for="f-invitados">Nº aproximado de invitados</label>
+          <input id="f-invitados" name="invitados" type="number" min="1" inputmode="numeric" />
+          <span class="err"></span>
+        </div>
+        <div class="field">
+          <label for="f-producto">Producto de interés</label>
+          <select id="f-producto" name="producto">
+            <option value="">Elige una opción</option>
+            <option>Tarta personalizada</option><option>Cupcakes y cake pops</option>
+            <option>Macarons y chocolates</option><option>Mesa dulce</option><option>No lo tengo claro</option>
+          </select>
+          <span class="err"></span>
+        </div>
+        <div class="field">
+          <label for="f-presupuesto">Presupuesto orientativo</label>
+          <input id="f-presupuesto" name="presupuesto" type="text" placeholder="Ej. 80–120 €" />
+          <span class="err"></span>
+        </div>
+        <div class="field full">
+          <label for="f-mensaje">Cuéntame tu idea <span class="req">*</span></label>
+          <textarea id="f-mensaje" name="mensaje" required placeholder="Temática, colores, sabores, alergias o cualquier detalle que quieras."></textarea>
+          <span class="err">Cuéntame brevemente tu idea.</span>
+        </div>
+        <div class="form-foot">
+          <small>Al enviar se abrirá WhatsApp con tu solicitud rellenada. Datos usados solo para responderte.</small>
+          <button type="submit" class="btn">Solicitar presupuesto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section aria-labelledby="faq-title">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow">Dudas frecuentes</span>
+      <h2 id="faq-title">Antes de encargar</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq reveal"><summary>¿Con cuánta antelación debo hacer el encargo?</summary><div class="faq-body">Recomiendo reservar con 2 a 3 semanas de antelación para tartas personalizadas y mesas dulces. En fechas señaladas, conviene avisar antes. Para urgencias, escríbeme y vemos disponibilidad.</div></details>
+      <details class="faq reveal"><summary>¿Cómo recojo mi pedido?</summary><div class="faq-body">La recogida se realiza en Málaga, en el punto y horario que acordemos al confirmar el encargo.</div></details>
+      <details class="faq reveal"><summary>¿Puedo personalizar sabores, colores y diseño?</summary><div class="faq-body">Sí. Cada creación se diseña contigo: sabor, relleno, colores, temática y detalles. Cuéntame tu idea y la hacemos realidad.</div></details>
+      <details class="faq reveal"><summary>¿Contemplas alérgenos e intolerancias?</summary><div class="faq-body">Trabajo con ingredientes seleccionados y puedo adaptar algunas recetas. Indícame cualquier alergia o intolerancia al pedir presupuesto y te confirmo las opciones disponibles.</div></details>
+      <details class="faq reveal"><summary>¿Cómo pido presupuesto?</summary><div class="faq-body">Por WhatsApp o rellenando el formulario de esta web. Te respondo de forma personalizada y sin compromiso.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA FINAL ============================ -->
+<section aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <h2 id="cta-title">Tu próxima celebración merece algo inolvidable</h2>
+      <p>Cuéntame qué tienes en mente y crearemos un dulce a tu medida.</p>
+      <div class="hero-cta">
+        <a class="btn btn--wa" href="#" data-wa>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.4.7-1.3.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.9 5-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20z"/></svg>
+          Hablar por WhatsApp
+        </a>
+        <a class="btn btn--cream" href="#contacto">Solicitar presupuesto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo">Candy's <span style="color:var(--rosa)">Repostería</span></a>
+        <p class="muted">Repostería artesanal hecha con mimo en Málaga. Tartas y dulces a medida para celebrar cada historia.</p>
+        <div class="socials">
+          <a data-ig aria-label="Instagram" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a data-fb aria-label="Facebook" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v7h3v-7H16l.5-3h-3V9.5c0-.3.2-.5.5-.5z"/></svg></a>
+          <a data-wa aria-label="WhatsApp" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.9 5-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.5-5.6c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.4.7-1.3.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#top">Inicio</a></li>
+          <li><a href="#servicios">Tartas y dulces</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#historia">Sobre mí</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a data-tel href="#">Teléfono</a></li>
+          <li><a data-mail href="#">Email</a></li>
+          <li><a data-wa href="#">WhatsApp</a></li>
+          <li id="footCiudad" class="muted" style="margin-top:.4rem"></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horario y zona</h4>
+        <p class="muted" id="footHorario"></p>
+        <p class="muted" id="footZona"></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Política de cookies</a>
+        <a href="#">Aviso legal</a>
+      </div>
+      <div>© <span id="year"></span> Candy's Repostería. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a class="wa-float" data-wa href="#" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.9 5-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.5-5.6c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.4.7-1.3.1-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 5 4.3 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="lightbox-inner" id="lbInner"></div>
+</div>
+
+<script>
+(function(){
+  var C = window.CANDY;
+  var waHref = "https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(C.whatsappMsg);
+
+  // Rellenar datos editables
+  document.querySelectorAll("[data-wa]").forEach(function(a){ a.href = waHref; a.target="_blank"; a.rel="noopener"; });
+  document.querySelectorAll("[data-tel]").forEach(function(a){ a.href="tel:"+C.telefono.replace(/\s/g,""); a.textContent=a.textContent==="Teléfono"?C.telefono:a.textContent; });
+  document.querySelectorAll("[data-mail]").forEach(function(a){ a.href="mailto:"+C.email; a.textContent=a.textContent==="Email"?C.email:a.textContent; });
+  document.querySelectorAll("[data-ig]").forEach(function(a){ a.href=C.instagram; a.target="_blank"; a.rel="noopener"; });
+  document.querySelectorAll("[data-fb]").forEach(function(a){ a.href=C.facebook; a.target="_blank"; a.rel="noopener"; });
+  document.getElementById("footCiudad").textContent = C.ciudad;
+  document.getElementById("footHorario").textContent = C.horario;
+  document.getElementById("footZona").textContent = "Recogida en "+C.ciudad;
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Header scroll
+  var header = document.getElementById("top");
+  addEventListener("scroll", function(){ header.classList.toggle("scrolled", scrollY>20); }, {passive:true});
+
+  // Menú móvil
+  var burger=document.getElementById("burger"), links=document.getElementById("navLinks"), ov=document.getElementById("navOverlay");
+  function toggleMenu(open){
+    links.classList.toggle("open",open); ov.classList.toggle("open",open);
+    burger.setAttribute("aria-expanded",open);
+    document.body.style.overflow=open?"hidden":"";
+  }
+  burger.addEventListener("click",function(){ toggleMenu(!links.classList.contains("open")); });
+  ov.addEventListener("click",function(){ toggleMenu(false); });
+  links.addEventListener("click",function(e){ if(e.target.closest("a")) toggleMenu(false); });
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:"0px 0px -40px 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  // Filtros galería
+  document.querySelectorAll(".filter").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var f=btn.dataset.f;
+      document.querySelectorAll(".filter").forEach(function(b){ b.setAttribute("aria-pressed", b===btn); });
+      document.querySelectorAll(".tile").forEach(function(t){
+        t.classList.toggle("hide", f!=="all" && t.dataset.cat!==f);
+      });
+    });
+  });
+
+  // Lightbox
+  var lb=document.getElementById("lightbox"), lbInner=document.getElementById("lbInner"), lbClose=document.getElementById("lbClose");
+  document.querySelectorAll(".tile").forEach(function(t){
+    t.addEventListener("click",function(){
+      lbInner.innerHTML = t.querySelector(".ph, img").outerHTML;
+      lb.classList.add("open"); document.body.style.overflow="hidden"; lbClose.focus();
+    });
+  });
+  function closeLb(){ lb.classList.remove("open"); document.body.style.overflow=""; }
+  lbClose.addEventListener("click",closeLb);
+  lb.addEventListener("click",function(e){ if(e.target===lb) closeLb(); });
+  addEventListener("keydown",function(e){ if(e.key==="Escape"){ closeLb(); toggleMenu(false); } });
+
+  // Validación + envío a WhatsApp
+  var form=document.querySelector("form.quote"), ok=document.getElementById("formOk");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var valid=true;
+    form.querySelectorAll("[required]").forEach(function(inp){
+      var field=inp.closest(".field"), bad=!inp.value.trim();
+      if(inp.type==="tel" && inp.value && !/^[0-9+\s]{6,}$/.test(inp.value)) bad=true;
+      field.classList.toggle("invalid",bad); if(bad) valid=false;
+    });
+    var email=form.querySelector("#f-email");
+    if(email.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)){ email.closest(".field").classList.add("invalid"); valid=false; }
+    if(!valid){ form.querySelector(".invalid input,.invalid select,.invalid textarea").focus(); return; }
+
+    var g=function(id){ return (form.querySelector(id)||{}).value||"—"; };
+    var msg="¡Hola Candy's! Quiero pedir presupuesto:\n"
+      +"• Nombre: "+g("#f-nombre")+"\n"
+      +"• Teléfono: "+g("#f-tel")+"\n"
+      +"• Email: "+g("#f-email")+"\n"
+      +"• Fecha del evento: "+g("#f-fecha")+"\n"
+      +"• Celebración: "+g("#f-tipo")+"\n"
+      +"• Invitados: "+g("#f-invitados")+"\n"
+      +"• Producto: "+g("#f-producto")+"\n"
+      +"• Presupuesto: "+g("#f-presupuesto")+"\n"
+      +"• Mensaje: "+g("#f-mensaje");
+    ok.classList.add("show"); ok.scrollIntoView({behavior:"smooth",block:"center"});
+    window.open("https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(msg),"_blank","noopener");
+  });
+})();
+</script>
+</body>
+</html>
