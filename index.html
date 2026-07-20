@@ -457,6 +457,12 @@ footer .muted{font-size:.92rem;margin-top:.6rem;line-height:1.5}
 @media(max-width:940px){.nav-links .btn{display:inline-flex}}
 /* anclas: que el header fijo no tape el título de la sección */
 section[id],#top{scroll-margin-top:88px}
+/* tarjeta alta (span 2 filas): la foto rellena el alto extra, sin hueco blanco */
+@media(min-width:901px){
+  .card--tall .card-media{aspect-ratio:auto;flex:1;min-height:0}
+  .card--tall .card-body{flex:0 0 auto}
+  .card--tall .card-body p{flex:0 0 auto}
+}
 </style>
 </head>
 <body>
